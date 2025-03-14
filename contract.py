@@ -127,18 +127,16 @@ class Voting(ARC4Contract):  # 🏛️ Main smart contract class
         self.localState[Txn.sender] = option  # 📝 Store the user's vote  
 
         # ✅ Increment vote count based on the selected option  
-        match option:  
-            case 1:  
-                self.option1Votes += 1  
-            case 2:  
-                self.option2Votes += 1  
-            case 3:  
-                self.option3Votes += 1  
-            case 4:  
-                self.option4Votes += 1  
-            case _:  
-                op.exit(0)  # 🚨 Invalid option (should never happen)  
-
+        if option == 1:
+            self.option1Votes += 1
+        elif option == 2:
+            self.option2Votes += 1
+        elif option == 3:
+            self.option3Votes += 1
+        elif option == 4:
+            self.option4Votes += 1
+        else:
+            op.exit(0)
     # ---------------------------------------------------  
     # ⚙️ FUNCTION: Opt-In  
     # Allows users to opt-in to the contract before voting.  
